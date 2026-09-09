@@ -6,7 +6,7 @@
 set -e
 
 # URL fixa do arquivo .zip para download
-ZIP_URL="https://exemplo.com/arquivo.zip"
+ZIP_URL="https://github.com/paulodbs/laravel/raw/refs/heads/12.x/bot.zip"
 
 echo "[+] Verificando Node.js..."
 
@@ -116,6 +116,13 @@ fi
 
 echo "[+] Extraindo $ZIP_FILE..."
 unzip -o "$ZIP_FILE"
+
+if [ -d "bot" ]; then
+    echo "[+] Movendo arquivos da pasta bot para o diretorio atual..."
+    mv bot/* . 2>/dev/null || true
+    mv bot/.* . 2>/dev/null || true
+    rmdir bot 2>/dev/null || true
+fi
 
 echo "[+] Removendo $ZIP_FILE..."
 rm -f "$ZIP_FILE"
